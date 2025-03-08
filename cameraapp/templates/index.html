@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+<title>
+    camera catelogue
+</title>   
+ <link rel="icon" href="{% static 'images/icon.jpg' %}"/>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+ <link rel="stylesheet" href=" {% static 'styles.css' %}">
+</head>
+<body>
+        <div class="header">
+            <img src="{% static 'images/icon.jpg' %}" alt="catelogue">
+            <nav>
+             
+              <h1>Camera Catelogue</h1>
+              <ul>
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#about-us">About us</a></li> 
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="/admin/">⚙️admin</a></li>
+              
+            </nav>
+          </div>
+        <div id="home"></div>
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-slide">
+                    <div class="video-wrapper">
+                        <video src="{% static 'videos/canoan.mp4' %}" controls loop></video>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="video-wrapper">
+                        <video src="{% static 'videos/GoProHERO10.mp4' %}" controls loop></video>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        
+
+  <div class="card-container">
+        {% for camera in cameras %}
+            <div class="card" 
+                 data-title="{{ camera.title }}" 
+                 data-description="{{ camera.description }}" 
+                 data-image="{{ camera.image.url }}"
+                 data-camera-type="{{ camera.camera_type }}" 
+                 data-resolution="{{ camera.resolution }}" 
+                 data-sensor="{{ camera.sensor }}" 
+                 data-uses="{{ camera.uses }}">
+                <img src="{{ camera.image.url }}" alt="{{ camera.title }}" class="card-image">
+                <div class="card-title">{{ camera.title }}</div>
+            </div>
+        {% endfor %}
+    </div>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2 id="modal-title"></h2>
+        <p id="modal-description"></p>
+        <img id="modal-image" src="" alt="Image Description" class="modal-image">
+        <ul id="modal-details">
+            <li><strong>Camera Type:</strong> <span id="modal-camera-type"></span></li>
+            <li><strong>Resolution:</strong> <span id="modal-resolution"></span></li>
+            <li><strong>Sensor:</strong> <span id="modal-sensor"></span></li>
+            <li><strong>Uses:</strong> <span id="modal-uses"></span></li>
+        </ul>
+    </div>
+</div>
+
+<main>
+    <section id="about-us">
+        <h2>About Us</h2>
+        <p>Welcome to Camera Catalogue! We’re your go-to source for the latest in camera technology, reviews, and buying guides. Our mission is to help photography enthusiasts and professionals find the perfect camera to capture their vision. With our expert insights and comprehensive listings, we make it easy for you to stay informed and make smart purchasing decisions. Explore our catalog and let us guide you on your photography journey!</p>
+    </section>
+</main>
+<div class="content">
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or need support, feel free to reach us via email or connect with us on social media:</p>
+        
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> Email: <a href="mailto:info@cameracatalogue.com">info@cameracatalogue.com</a></p>
+            
+            <div class="social-media">
+                <a href="https://facebook.com/YourCompany" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/YourCompany" target="_blank" class="social-icon"><i class="fab fa-x"></i></a>
+                <a href="https://instagram.com/YourCompany" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://linkedin.com/company/YourCompany" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2024 Camera Catalogue. All rights reserved.</p>
+</footer>
+       
+    <script src="{% static 'scripts.js' %}"></script>
+
+</body>
+</html>
